@@ -1,46 +1,13 @@
-let fechainicio = "";       //new Date('2023/03/11');               
-let fechatermino = "";
-
-let dias = [];   //fechainicio.getDay(fechainicio);
 
 let preguntas = ['Ingrese una fecha de inicio \n' , 'Ingrese una fecha de término \n'];
 let respuestas = [];
-
 
 function preguntar(indice){
     process.stdout.write(preguntas[indice])
 }
 
-process.stdin.on('data', (data)=>{
-    respuestas.push(data.toString().trim()) 
-    if(respuestas.length < preguntas.length){
-        preguntar(respuestas.length);
-    }else{
-
-        if (respuestas[0]) {
-            fechainicio = new Date(respuestas[0]);
-        }
-    
-        if (respuestas[1]){
-            fechatermino = new Date(respuestas[1]);
-        }
-
-        const dias = [];
-
-        process.stdout.write('\n')
-
-        let fechaactual = fechainicio;
-        while (fechaactual <= fechatermino){
-            console.log(fechaactual);
-            dias.push(fechaactual.getDay(fechaactual)); 
-            fechaactual = new Date(fechaactual.setDate(fechaactual.getDate() +1));
-        }
-        
-        console.log('\n');
-        console.log(dias)
-        console.log('\n');
-
-        let acumusemana = 0;
+function calcularHorasLaborales(fechainicio,fechatermino,dias){
+    let acumusemana = 0;
         let acumusabado = 0;
         let horassemana = 0;
         let horassabado = 0;
@@ -74,9 +41,44 @@ process.stdin.on('data', (data)=>{
         console.log(`SUBTOTAL SA: $${acumusabado}\n`);
 
         console.log(`TOTAL: ${acumusemana} + ${acumusabado} = $${acumusemana+acumusabado}\n`);
+}
 
+let fechainicio = "";              
+let fechatermino = "";
+let dias = [];
 
-        process.exit()
+process.stdin.on('data', (data)=>{
+    respuestas.push(data.toString().trim()) 
+    if(respuestas.length < preguntas.length){
+        preguntar(respuestas.length);
+    }else{
+
+        if (respuestas[0]) {
+            fechainicio = new Date(respuestas[0]);
+        }
+    
+        if (respuestas[1]){
+            fechatermino = new Date(respuestas[1]);
+        }
+
+        const dias = [];
+
+        process.stdout.write('\n')
+
+        let fechaactual = fechainicio;
+        while (fechaactual <= fechatermino){
+            console.log(fechaactual);
+            dias.push(fechaactual.getDay(fechaactual)); 
+            fechaactual = new Date(fechaactual.setDate(fechaactual.getDate() +1));
+        }
+
+        console.log('\n');
+        console.log(dias)
+        console.log('\n');
+
+        calcularHorasLaborales(fechainicio,fechatermino,dias);
+
+        process.exit();
     } 
 
 })
