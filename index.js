@@ -1,5 +1,5 @@
 
-let preguntas = ['Ingrese una fecha de inicio \n' , 'Ingrese una fecha de término \n'];
+let preguntas = ['Ingrese una fecha de inicio (AAAA/MM/DD) \n' , 'Ingrese una fecha de término (AAAA/MM/DD) \n'];
 let respuestas = [];
 
 function preguntar(indice){
@@ -29,18 +29,18 @@ function calcularHorasLaborales(fechainicio,fechatermino,dias){
             }
         })
 
-        console.log(`FECHA INICIO: ${fechainicio}`);
-        console.log(`FECHA TÉRMINO: ${fechatermino}\n`);
+        process.stdout.write(`FECHA INICIO: ${fechainicio}\n`);
+        process.stdout.write(`FECHA TÉRMINO: ${fechatermino}\n`);
 
-        console.log(`CANTIDAD HORAS LU-VI: ${horassemana}`);
-        console.log("VALOR HORA: $7100");
-        console.log(`SUBTOTAL LU-VI $${acumusemana}\n`);
+        process.stdout.write(`CANTIDAD HORAS LU-VI: ${horassemana}\n`);
+        process.stdout.write("VALOR HORA: $7100"+'\n');
+        process.stdout.write(`SUBTOTAL LU-VI $${acumusemana}\n`);
 
-        console.log(`CANTIDAD HORAS SA: ${horassabado}`);
-        console.log("VALOR HORA: $12300");
-        console.log(`SUBTOTAL SA: $${acumusabado}\n`);
+        process.stdout.write(`CANTIDAD HORAS SA: ${horassabado}\n`);
+        process.stdout.write("VALOR HORA: $12300"+'\n');
+        process.stdout.write(`SUBTOTAL SA: $${acumusabado}\n`);
 
-        console.log(`TOTAL: ${acumusemana} + ${acumusabado} = $${acumusemana+acumusabado}\n`);
+        process.stdout.write(`TOTAL: ${acumusemana} + ${acumusabado} = $${acumusemana+acumusabado}\n`);
 }
 
 let fechainicio = "";              
